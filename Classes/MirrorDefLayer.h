@@ -2,15 +2,12 @@
 #ifndef MIRRORDEFLAYER_H
 #define MIRRORDEFLAYER_H
 
-#include <string>
 #include "GameManager.h"
-/******************************* Abstract Class ****************************
-MirrorDefLayer does not have any pure virtual methods, but its author
-  defined it as an abstract class, so you should not use it directly.
-  Inherit from it instead and create only objects from the derived classes
-*****************************************************************************/
+#include <cocos2d.h>
 
-class MirrorDefLayer
+using namespace cocos2d;
+
+class MirrorDefLayer : public Node
 {
 public:
 

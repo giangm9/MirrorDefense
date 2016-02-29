@@ -1,13 +1,15 @@
+#ifndef _PLAYLAYER_H_
+#define _PLAYLAYER_H_
 
-#ifndef PLAYLAYER_H
-#define PLAYLAYER_H
-#include "MirrorDefLayer.h"
 
-#include <string>
-class PlayLayer : virtual public MirrorDefLayer
+
+class PlayLayer : MirrorDefLayer 
 {
+
+
 
 
 };
 
-#endif // PLAYLAYER_H
+
+#endif //_PLAYLAYER_H_

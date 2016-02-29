@@ -1,28 +1,18 @@
+#ifndef _MIRRORDEFLAYER_H_
+#define _MIRRORDEFLAYER_H_
 
-#ifndef MIRRORDEFLAYER_H
-#define MIRRORDEFLAYER_H
 
-#include "GameManager.h"
-#include <cocos2d.h>
 
-using namespace cocos2d;
-
-class MirrorDefLayer : public Node
+class MirrorDefLayer 
 {
+
 public:
+	float onAppearLayer ();
+	float onExitLayer ();
 
 
 
-	/**
-	 * will be call right after initial function
-	 */
-	virtual void onAppear ();
-
-	virtual void onExit ();
-
-
-
-	virtual void setManager (GameManager gm);
 };
 
-#endif // MIRRORDEFLAYER_H
+
+#endif //_MIRRORDEFLAYER_H_

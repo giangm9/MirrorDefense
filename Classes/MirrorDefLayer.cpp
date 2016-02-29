@@ -1,16 +1,14 @@
 #include "MirrorDefLayer.h"
-#include "GameManager.h"
 
-void MirrorDefLayer::onAppear ()
-{
+
+float MirrorDefLayer::onAppearLayer (){
+
 }
 
-void MirrorDefLayer::onExit ()
-{
+float MirrorDefLayer::onExitLayer (){
+
 }
 
-void MirrorDefLayer::setManager (GameManager gm)
-{
-}
+
 
 

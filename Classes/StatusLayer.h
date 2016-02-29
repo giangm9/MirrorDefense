@@ -1,12 +1,15 @@
+#ifndef _STATUSLAYER_H_
+#define _STATUSLAYER_H_
 
-#ifndef STATUSLAYER_H
-#define STATUSLAYER_H
-#include "MirrorDefLayer.h"
 
-#include <string>
-class StatusLayer : virtual public MirrorDefLayer
+
+class StatusLayer : MirrorDefLayer 
 {
+
+
+
 
 };
 
-#endif // STATUSLAYER_H
+
+#endif //_STATUSLAYER_H_

@@ -1,32 +1,29 @@
-
-#ifndef GAMEMANAGER_H
-#define GAMEMANAGER_H
-
-enum StorageKey {
-  SKEY_SCORE = 0,
-  SKEY_HP
-};
+#ifndef _GAMEMANAGER_H_
+#define _GAMEMANAGER_H_
 
 
-enum GameState{
-  GSTATE_MAINMENU = 0,
-  GSTATE_PLAY
-};
 
-class GameManager
+/*managing game's state and some resources*/
+class GameManager 
 {
+
 public:
+	void enterTheGame ();
+	GameManager getInstance ();
+	void changeGameState (GameState gameState);
+	float getDouble (StogareKey key);
+	void setDouble (StogareKey key,
+	                double value,
+	                bool isStogared);
+	void getString (StogareKey key,
+	                char* str);
+	void setString (StogareKey key,
+	                char* str,
+	                bool isStogared);
 
-  void changeGameState (GameState gameState);
 
-  double getDoubleVal (StorageKey key);
-
-  void setDoubleVal(StorageKey key, double value, bool isSaved);
-
-  char* getStringVal(StorageKey key);
-
-  void setStringVal(StorageKey key, char* value, bool isSaved);
 
 };
 
-#endif // GAMEMANAGER_H
+
+#endif //_GAMEMANAGER_H_

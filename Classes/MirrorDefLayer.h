@@ -1,17 +1,16 @@
 #ifndef _MIRRORDEFLAYER_H_
 #define _MIRRORDEFLAYER_H_
 
+#include "cocos2d.h"
 
+using namespace cocos2d;
 
-class MirrorDefLayer 
+class MirrorDefLayer : public Node
 {
 
 public:
-	float onAppearLayer ();
-	float onExitLayer ();
-
-
-
+	virtual float onAppearLayer() = 0;
+	virtual float onExitLayer () = 0;
 };
 
 

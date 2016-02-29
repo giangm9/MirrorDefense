@@ -1,7 +1,13 @@
 #ifndef _GAMEMANAGER_H_
 #define _GAMEMANAGER_H_
 
+enum GameState{
 
+};
+
+enum StogareKey{
+
+};
 
 /*managing game's state and some resources*/
 class GameManager 

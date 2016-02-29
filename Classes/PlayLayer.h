@@ -7,8 +7,12 @@
 class PlayLayer : public MirrorDefLayer
 {
 
+public:
+    virtual bool init();
+    CREATE_FUNC(PlayLayer)
 
-
+    virtual float onAppearLayer(){return 0;}
+    virtual float onExitLayer(){return 0;}
 
 };
 

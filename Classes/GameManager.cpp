@@ -1,16 +1,26 @@
 #include "GameManager.h"
 
 
-void GameManager::enterTheGame (){
 
+GameManager* GameManager::ms_instance = NULL;
+
+GameManager* GameManager::getInstance (){
+    if (!ms_instance){
+        ms_instance = new GameManager();
+        auto director = Director::getInstance();
+        ms_instance->m_scene = Scene::create();
+        director->runWithScene(ms_instance->m_scene);
+        ms_instance->changeGameState(STATE_MAIN);
+    }
+    return ms_instance;
 }
 
-GameManager GameManager::getInstance (){
 
-}
+
 
 void GameManager::changeGameState (GameState gameState){
-
+    auto layer = MenuLayer::create();
+    m_scene->addChild(layer);
 }
 
 float GameManager::getDouble (StogareKey key){

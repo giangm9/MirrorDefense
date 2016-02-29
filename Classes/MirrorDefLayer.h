@@ -11,6 +11,7 @@ class MirrorDefLayer : public Node
 public:
 	virtual float onAppearLayer() = 0;
 	virtual float onExitLayer () = 0;
+    virtual bool init() = 0;
 };
 
 

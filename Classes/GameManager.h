@@ -1,8 +1,13 @@
 #ifndef _GAMEMANAGER_H_
 #define _GAMEMANAGER_H_
 
-enum GameState{
+#include "cocos2d.h"
+#include "MenuLayer.h"
 
+using namespace cocos2d;
+
+enum GameState{
+  STATE_MAIN = 0,
 };
 
 enum StogareKey{
@@ -14,20 +19,22 @@ class GameManager
 {
 
 public:
-	void enterTheGame ();
-	GameManager getInstance ();
+    static GameManager* getInstance ();
 	void changeGameState (GameState gameState);
 	float getDouble (StogareKey key);
 	void setDouble (StogareKey key,
 	                double value,
-	                bool isStogared);
+                    bool isStogared);
 	void getString (StogareKey key,
 	                char* str);
 	void setString (StogareKey key,
 	                char* str,
 	                bool isStogared);
 
-
+private:
+    static GameManager* ms_instance;
+    GameState m_currentState;
+    Scene* m_scene;
 
 };
 

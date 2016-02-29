@@ -9,10 +9,11 @@ using namespace cocos2d;
 
 class MenuLayer : public MirrorDefLayer
 {
+public:
   virtual bool init();
 
-  virtual float onAppearLayer();
-  virtual float onExitLayer();
+  virtual float onAppearLayer(){return 0;}
+  virtual float onExitLayer(){return 0;}
 
   CREATE_FUNC(MenuLayer)
 };

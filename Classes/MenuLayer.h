@@ -2,12 +2,11 @@
 #define _MENULAYER_H_
 
 #include "cocos2d.h"
-#include "MirrorDefLayer.h"
 
 using namespace cocos2d;
 
 
-class MenuLayer : public MirrorDefLayer
+class MenuLayer
 {
 public:
   virtual bool init();

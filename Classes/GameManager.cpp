@@ -1,4 +1,5 @@
 #include "GameManager.h"
+#include "play/PlayLayer.h"
 
 
 
@@ -7,10 +8,11 @@ GameManager* GameManager::ms_instance = NULL;
 GameManager* GameManager::getInstance (){
     if (!ms_instance){
         ms_instance = new GameManager();
+
         auto director = Director::getInstance();
         ms_instance->m_scene = Scene::create();
         director->runWithScene(ms_instance->m_scene);
-        ms_instance->changeGameState(STATE_MAIN);
+        ms_instance->changeGameState(GSTATE_MAIN);
     }
     return ms_instance;
 }
@@ -19,7 +21,7 @@ GameManager* GameManager::getInstance (){
 
 
 void GameManager::changeGameState (GameState gameState){
-    auto layer = MenuLayer::create();
+    auto layer = PlayLayer::create();
     m_scene->addChild(layer);
 }
 
@@ -43,7 +45,3 @@ void GameManager::setString (StogareKey key,
 	                            bool isStogared){
 
 }
-
-
-
-

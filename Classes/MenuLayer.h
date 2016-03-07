@@ -6,13 +6,10 @@
 using namespace cocos2d;
 
 
-class MenuLayer
+class MenuLayer : public Layer
 {
 public:
   virtual bool init();
-
-  virtual float onAppearLayer(){return 0;}
-  virtual float onExitLayer(){return 0;}
 
   CREATE_FUNC(MenuLayer)
 };

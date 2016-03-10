@@ -1,5 +1,5 @@
 #include "GameManager.h"
-#include "PlayLayer.h"
+#include "PlayScene.h"
 
 
 
@@ -10,9 +10,9 @@ GameManager* GameManager::getInstance (){
         ms_instance = new GameManager();
 
         auto director = Director::getInstance();
-        ms_instance->m_scene = Scene::create();
+				ms_instance->m_scene = Scene::create();
         director->runWithScene(ms_instance->m_scene);
-        ms_instance->changeGameState(GSTATE_MAIN);
+				ms_instance->onGameEvent(GE_MAIN);
     }
     return ms_instance;
 }
@@ -20,9 +20,9 @@ GameManager* GameManager::getInstance (){
 
 
 
-void GameManager::changeGameState (GameState gameState){
-    auto layer = PlayLayer::create();
-    m_scene->addChild(layer);
+void GameManager::onGameEvent  (GameEvent gameEvent){
+	auto play = PlayScene::create();
+	Director::getInstance()->replaceScene(play);	
 }
 
 float GameManager::getDouble (StogareKey key){

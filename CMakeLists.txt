@@ -122,7 +122,7 @@ if ( WIN32 )
 )
 endif( WIN32 )
 
-file(GLOB CPP_SRCS Classes/*.cpp)
+file(GLOB CPP_SRCS Classes/*.cpp Classes/actors/*.cpp)
 
 set(GAME_SRC
   ${CPP_SRCS}
@@ -130,7 +130,7 @@ set(GAME_SRC
 )
 
 
-file(GLOB CPP_HEADERS "Classes/*.h")
+file(GLOB CPP_HEADERS Classes/*.h Classes/actors/*.h)
 
 set(GAME_HEADERS
   ${CPP_HEADERS}

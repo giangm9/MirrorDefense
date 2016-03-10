@@ -9,14 +9,13 @@ using namespace cocos2d;
 
 
 
-class PlayLayer : public Layer
+class PlayScene : public Scene
 {
 
-public:
-    virtual bool init();
-    CREATE_FUNC(PlayLayer)
-
-private:
+public:	
+	virtual bool init();
+	CREATE_FUNC(PlayScene)
+	private:
 
 };
 

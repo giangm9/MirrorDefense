@@ -6,10 +6,10 @@
 
 using namespace cocos2d;
 
-enum GameState{
-    GSTATE_MAIN = 0,
-    GSTATE_PLAY,
-    GSTATE_GAMEOVER,
+enum GameEvent{
+		GE_MAIN = 0,
+		GE_PLAY,
+		GE_GAMEOVER,
 };
 
 enum StogareKey{
@@ -22,7 +22,7 @@ class GameManager
 
 public:
     static GameManager* getInstance ();
-    void changeGameState (GameState gameState);
+		void onGameEvent (GameEvent gameEvent);
 
     float getDouble (StogareKey key);
     void setDouble (StogareKey key, double value, bool isStogared);
@@ -32,7 +32,7 @@ public:
 
 private:
     static GameManager* ms_instance;
-    GameState m_currentState;
+		GameEvent m_currentEvent;
     Scene* m_scene;
 
 };

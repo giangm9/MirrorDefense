@@ -8,12 +8,13 @@ using namespace cocos2d;
 
 class Actor : public Node{
 public:
-	bool virtual bool init();
-	onCollision(Fixture f);
+	virtual bool init(){return true;}
+	void onCollision(PhysicsContact c){}
+	Scene *getScene(){return _scene;}
 
 	CREATE_FUNC(Actor)
 protected:
-	void createRotator();
+	void createRotator(){}
 	Scene *_scene;
 
 };

@@ -7,7 +7,10 @@ class Mirror : public Actor{
 public:
 	virtual bool init();
 
+	static Mirror* create(Scene* scene);
 	CREATE_FUNC(Mirror)
+	EventListenerTouchOneByOne *listener;
+
 };
 
 #endif //__MIRROR_H__

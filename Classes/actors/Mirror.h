@@ -9,7 +9,10 @@ public:
 
 	static Mirror* create(Scene* scene);
 	CREATE_FUNC(Mirror)
-	EventListenerTouchOneByOne *listener;
+	EventListenerTouchOneByOne *_listener;
+	EventListenerPhysicsContact *_physicListener;
+
+	bool onContactBegin(PhysicsContact& contact);
 
 };
 

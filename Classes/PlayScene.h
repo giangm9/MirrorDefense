@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "actors/Mirror.h"
+#include "actors/Bullet.h"
 
 using namespace cocos2d;
 

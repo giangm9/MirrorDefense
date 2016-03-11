@@ -3,11 +3,15 @@
 
 #include "Actor.h"
 
+using namespace cocos2d;
+
 class Bullet : public Actor
 {
 public:
 	virtual bool init();
 	CREATE_FUNC(Bullet)
+	static Bullet* create(Scene* pScene, Vec2 pos, Vec2 target);
+
 
 };
 

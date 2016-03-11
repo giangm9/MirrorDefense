@@ -18,8 +18,6 @@ GameManager* GameManager::getInstance (){
 }
 
 
-
-
 void GameManager::onGameEvent  (GameEvent gameEvent){
 	auto play = PlayScene::create();
 	Director::getInstance()->replaceScene(play);	

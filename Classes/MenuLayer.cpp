@@ -1,4 +1,5 @@
 #include "MenuLayer.h"
+#include "GameManager.h"
 
 bool MenuLayer::init(){
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -10,6 +11,8 @@ bool MenuLayer::init(){
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
                             origin.y + visibleSize.height - label->getContentSize().height));
     addChild(label);
+
+		GameManager::getInstance()->onGameEvent(GE_PLAY);
     return true;
 }
 

@@ -1,4 +1,5 @@
 #include "Mirror.h"
+#include "Bullet.h"
 
 
 #define TAG_MIRROR 10
@@ -10,6 +11,7 @@ bool Mirror::init(){
 	auto physicsBody = PhysicsBody::createBox(Size(200.0f, 30.0f));
 	physicsBody->setGravityEnable(false);
 	physicsBody->setDynamic(false);
+	physicsBody->setContactTestBitmask(0xff);
 
 	this->setPhysicsBody(physicsBody);
 
@@ -52,10 +54,6 @@ bool Mirror::init(){
 
 	};
 
-	_physicListener = EventListenerPhysicsContact::create();
-	_physicListener->onContactBegin = CC_CALLBACK_1(Mirror::onContactBegin, this);
-
-
 
 	return true;
 }
@@ -63,33 +61,26 @@ bool Mirror::init(){
 Mirror* Mirror::create(Scene *pScene){
 	auto mirror = Mirror::create();
 	mirror->_scene = pScene;
-	pScene->getEventDispatcher()->addEventListenerWithSceneGraphPriority(mirror->_physicListener, pScene);
+
 	mirror->getEventDispatcher()->addEventListenerWithSceneGraphPriority(mirror->_listener, mirror);
 	return mirror;
 }
 
 
-bool Mirror::onContactBegin(PhysicsContact &contact){
+void Mirror::onCollision(PhysicsContact &c, PhysicsBody *b){
 	log("hi");
-	auto nodeA = contact.getShapeA()->getBody()->getNode();
-	auto nodeB = contact.getShapeB()->getBody()->getNode();
+	if (b->getNode()->getTag() == 11){
 
-	Node *mirror = NULL;
-	Node *bullet = NULL;
-	if (!nodeA || !nodeB) return false;
 
-	log("%d %d", nodeA->getTag(), nodeB->getTag());
-	if (nodeA->getTag() == TAG_MIRROR && nodeB->getTag() == 11 ){
-		mirror = nodeA;
-		bullet = nodeB;
-	} else if(nodeA->getTag() == 11  && nodeB->getTag() == TAG_MIRROR ){
-		mirror = nodeB;
-		bullet = nodeA;
+		auto reflect = Bullet::create(getScene(), b->getNode()->getPosition(),
+																	Vec2(
+																		cos(CC_DEGREES_TO_RADIANS( b->getNode()->getRotation())) * -10000,
+																		sin(CC_DEGREES_TO_RADIANS( b->getNode()->getRotation())) *  -10000));
+		getScene()->addChild(reflect);
+
+		b->getNode()->removeFromParentAndCleanup(true);
+		log("%.2f %.2f", b->getPosition().x, b->getPosition().y);
+		log("%.2f %.2f", getPhysicsBody()->getPosition().x, getPhysicsBody()->getPosition().y);
+		//auto bullet = Bullet::create(_scene)
 	}
-
-	if (mirror && bullet){
-		bullet->removeFromParentAndCleanup(true);
-
-	}
-	return true;
 }

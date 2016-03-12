@@ -7,14 +7,13 @@
 
 using namespace cocos2d;
 
-
-
 class PlayScene : public Scene
 {
 
 public:	
 	virtual bool init();
-	CREATE_FUNC(PlayScene)
+	bool onContactBegin(PhysicsContact&);
+	CREATE_FUNC(PlayScene)	
 private:
 
 };

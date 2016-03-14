@@ -12,7 +12,7 @@ GameManager* GameManager::getInstance (){
         auto director = Director::getInstance();
 				ms_instance->m_scene = Scene::create();
         director->runWithScene(ms_instance->m_scene);
-				ms_instance->onGameEvent(GE_MAIN);
+				ms_instance->onGameEvent(GE_PLAY);
     }
     return ms_instance;
 }

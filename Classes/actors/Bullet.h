@@ -9,6 +9,7 @@ class Bullet : public Actor
 {
 public:
 	virtual bool init();
+	Vec2 _taget;
 	CREATE_FUNC(Bullet)
 	static Bullet* create(Scene* pScene, Vec2 pos, Vec2 target);
 

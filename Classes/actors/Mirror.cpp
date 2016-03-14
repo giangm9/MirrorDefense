@@ -72,11 +72,9 @@ void Mirror::onCollision(PhysicsContact &c, PhysicsBody *b){
 	log("hi");
 	if (b->getNode()->getTag() == 11){
 
-
-		auto reflect = Bullet::create(getScene(), b->getNode()->getPosition(),
-																	Vec2(
-																		cos(CC_DEGREES_TO_RADIANS( b->getNode()->getRotation())) * -10000,
-																		sin(CC_DEGREES_TO_RADIANS( b->getNode()->getRotation())) *  -10000));
+		auto incommingBullet = static_cast<Bullet*>(b->getNode());
+		auto reflect = Bullet::create(getScene(), incommingBullet->getPosition(),
+																	incommingBullet->_taget * -1);
 		getScene()->addChild(reflect);
 
 		b->getNode()->removeFromParentAndCleanup(true);

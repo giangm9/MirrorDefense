@@ -8,13 +8,15 @@ bool PlayScene::init(){
 
 	getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 	getPhysicsWorld()->setGravity(Vec2(0,0));
-	Point s_centre(800, 300);
+	Point s_centre(800, 200);
 
 	auto mirror = Mirror::create(this);
 
 	for (int i = 0; i < 1; i++){
+
+		float power = 50000; // its over 9000
 		auto bullet = Bullet::create(this,
-																 Vec2(200 + 20*i, 600), Vec2(10000 + CCRANDOM_0_1() * 10000, -10000));
+																 Vec2(0, 200), Vec2(1.0f, 0.01f) * power);
 		addChild(bullet);
 	}
 
@@ -31,8 +33,7 @@ bool PlayScene::init(){
 }
 
 
-bool PlayScene::onContactBegin(PhysicsContact &contact){
-	//log("hi");
+bool PlayScene::onContactBegin(PhysicsContact &contact){	
 	auto nodeA = contact.getShapeA()->getBody()->getNode();
 	auto nodeB = contact.getShapeB()->getBody()->getNode();
 

@@ -7,6 +7,7 @@ bool Bullet::init(){
 	auto physicsBody = PhysicsBody::createBox(Size(10.0f, 60.0f));
 	physicsBody->setCategoryBitmask(1);
 	physicsBody->setCollisionBitmask(0xfe);
+	physicsBody->setContactTestBitmask(0xfe);
 
 	this->setPhysicsBody(physicsBody);
 }
@@ -15,8 +16,9 @@ bool Bullet::init(){
 Bullet* Bullet::create(Scene *pScene, Vec2 pos, Vec2 target){
 	auto bullet = Bullet::create();
 	bullet->_scene = pScene;
-	bullet->setRotation(CC_RADIANS_TO_DEGREES(atan(target.y / target.x)));
-	bullet->getPhysicsBody()->applyForce(target);
+	bullet->setRotation(CC_RADIANS_TO_DEGREES(atan(target.x / target.y)));
+	bullet->getPhysicsBody()->applyImpulse(target);
 	bullet->setPosition(pos);
+	bullet->_taget = Vec2(target);
 	return bullet;
 }

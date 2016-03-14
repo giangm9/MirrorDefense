@@ -12,6 +12,7 @@ class PlayScene : public Scene
 
 public:	
 	virtual bool init();
+
 	bool onContactBegin(PhysicsContact&);
 	CREATE_FUNC(PlayScene)	
 private:

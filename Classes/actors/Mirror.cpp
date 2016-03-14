@@ -55,13 +55,14 @@ bool Mirror::init(){
 	};
 
 
+
+
 	return true;
 }
 
 Mirror* Mirror::create(Scene *pScene){
 	auto mirror = Mirror::create();
-	mirror->_scene = pScene;
-
+	mirror->_scene = pScene;	
 	mirror->getEventDispatcher()->addEventListenerWithSceneGraphPriority(mirror->_listener, mirror);
 	return mirror;
 }

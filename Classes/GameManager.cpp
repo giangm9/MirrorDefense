@@ -21,10 +21,20 @@ GameManager* GameManager::getInstance (){
 void GameManager::onGameEvent  (GameEvent gameEvent){
 	auto play = PlayScene::create();
 	Director::getInstance()->replaceScene(play);	
+	if (gameEvent == GE_MAIN){
+		auto menu = MenuScene::create();
+		Director::getInstance()->replaceScene(menu);
+	}else if (gameEvent == GE_PLAY){
+		auto play = PlayScene::create();
+		Director::getInstance()->replaceScene(play);
+	}//else if (gameEvent == GE_GAMEOVER){
+//		auto gameover= GameOverLayer::create();
+	//}
 }
 
-float GameManager::getDouble (StogareKey key){
 
+float GameManager::getDouble (StogareKey key){
+	return 0;
 }
 
 void GameManager::setDouble (StogareKey key,
@@ -35,7 +45,6 @@ void GameManager::setDouble (StogareKey key,
 
 void GameManager::getString (StogareKey key,
 	                            char* str){
-
 }
 
 void GameManager::setString (StogareKey key,

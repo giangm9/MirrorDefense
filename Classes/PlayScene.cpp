@@ -4,7 +4,7 @@
 
 
 bool PlayScene::init(){
-	Scene::initWithPhysics();	
+	Scene::initWithPhysics();
 
 	getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 	getPhysicsWorld()->setGravity(Vec2(0,0));
@@ -17,6 +17,7 @@ bool PlayScene::init(){
 																 Vec2(200 + 20*i, 600), Vec2(10000 + CCRANDOM_0_1() * 10000, -10000));
 		addChild(bullet);
 	}
+
 
 	mirror->setPosition(s_centre);
 	addChild(mirror, 2);

@@ -2,7 +2,11 @@
 #define _GAMEMANAGER_H_
 
 #include "cocos2d.h"
-#include "MenuLayer.h"
+
+//#include "MenuLayer.h"
+
+//#include "MenuLayer.h"
+#include "MenuScene.h"
 
 using namespace cocos2d;
 

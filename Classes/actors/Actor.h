@@ -9,7 +9,9 @@ using namespace cocos2d;
 class Actor : public Node{
 public:
 	virtual bool init(){return true;}
+
 	virtual void onCollision(PhysicsContact &c, PhysicsBody *b){}
+
 	Scene *getScene(){return _scene;}
 
 	CREATE_FUNC(Actor)

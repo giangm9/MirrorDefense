@@ -8,7 +8,7 @@
 bool Mirror::init(){
 	Actor::init();
 	setTag(TAG_MIRROR);
-	auto physicsBody = PhysicsBody::createBox(Size(200.0f, 30.0f));
+	auto physicsBody = PhysicsBody::createBox(Size(200.0f, 30.0f),PhysicsMaterial(0,.5,0));
 	physicsBody->setGravityEnable(false);
 	physicsBody->setDynamic(false);
 	physicsBody->setContactTestBitmask(0xff);
@@ -22,14 +22,14 @@ bool Mirror::init(){
 	sprite->setPosition(Vec2(0,0));
 	sprite->setTag(1);
 
-	setRotation(135);
+	setRotation(30);
 
 	_listener = EventListenerTouchOneByOne::create();
 	//listener->setSwallowTouches(true);
 
 	_listener->onTouchBegan = [](Touch *touch , Event * event){
 		auto target = static_cast<Mirror*>(event->getCurrentTarget());
-		auto world = target->getScene()->getPhysicsWorld();
+		//auto world = target->getScene()->getPhysicsWorld();
 
 		if(target->getPosition().distance(touch->getLocation()) < 100){
 
@@ -40,7 +40,8 @@ bool Mirror::init(){
 
 	_listener->onTouchMoved = [](Touch* touch, Event* event){
 		auto target = static_cast<Mirror*>(event->getCurrentTarget());
-		auto world = target->getScene()->getPhysicsWorld();
+		target->getPhysicsBody()->setCategoryBitmask(0);
+		//auto world = target->getScene()->getPhysicsWorld();
 
 		//Move the position of current button sprite
 
@@ -50,6 +51,7 @@ bool Mirror::init(){
 
 	_listener->onTouchEnded = [=](Touch *touch, Event* event){
 		auto target = static_cast<Mirror*>(event->getCurrentTarget());
+		target->getPhysicsBody()->setCategoryBitmask(0xff);
 		target->getPhysicsBody()->retain();
 
 	};
@@ -69,17 +71,17 @@ Mirror* Mirror::create(Scene *pScene){
 
 
 void Mirror::onCollision(PhysicsContact &c, PhysicsBody *b){
-	log("hi");
+	//log("hi");
 	if (b->getNode()->getTag() == 11){
 
 		auto incommingBullet = static_cast<Bullet*>(b->getNode());
-		auto reflect = Bullet::create(getScene(), incommingBullet->getPosition(),
-																	incommingBullet->_taget * -1);
-		getScene()->addChild(reflect);
+		//auto reflect = Bullet::create(getScene(), incommingBullet->getPosition(),
+			//														incommingBullet->_taget * -1.1);
+		//getScene()->addChild(reflect);
 
-		b->getNode()->removeFromParentAndCleanup(true);
-		log("%.2f %.2f", b->getPosition().x, b->getPosition().y);
-		log("%.2f %.2f", getPhysicsBody()->getPosition().x, getPhysicsBody()->getPosition().y);
+		//b->getNode()->removeFromParentAndCleanup(true);
+		//log("%.2f %.2f", b->getPosition().x, b->getPosition().y);
+		//log("%.2f %.2f", getPhysicsBody()->getPosition().x, getPhysicsBody()->getPosition().y);
 		//auto bullet = Bullet::create(_scene)
 	}
 }

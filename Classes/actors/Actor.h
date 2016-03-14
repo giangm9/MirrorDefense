@@ -16,8 +16,9 @@ public:
 
 	CREATE_FUNC(Actor)
 protected:
-	void createRotator(){}
+	virtual void createRotator();
 	Scene *_scene;
+	EventListenerTouchOneByOne *_rotateListener;
 
 };
 

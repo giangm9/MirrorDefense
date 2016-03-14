@@ -12,14 +12,8 @@ bool PlayScene::init(){
 
 	auto mirror = Mirror::create(this);
 
-	for (int i = 0; i < 1; i++){
 
-		float power = 50000; // its over 9000
-		auto bullet = Bullet::create(this,
-																 Vec2(0, 200), Vec2(1.0f, 0.01f) * power);
-		addChild(bullet);
-	}
-
+	schedule(CC_SCHEDULE_SELECTOR(PlayScene::tick), 0.5f);
 
 	mirror->setPosition(s_centre);
 	addChild(mirror, 2);
@@ -32,6 +26,18 @@ bool PlayScene::init(){
 	return true;
 }
 
+void PlayScene::tick(float dt){
+
+
+	float power = 10000; // its over 9000
+	for (int i = 0; i < 5; i++){
+		auto bullet = Bullet::create(this,
+																 Vec2(0 + i * 20, 200), Vec2(1.0f, 0.00f) * power);
+
+		addChild(bullet);
+	}
+
+}
 
 bool PlayScene::onContactBegin(PhysicsContact &contact){	
 	auto nodeA = contact.getShapeA()->getBody()->getNode();

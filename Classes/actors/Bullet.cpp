@@ -4,7 +4,8 @@
 bool Bullet::init(){
 	Actor::init();
 	setTag(11);
-	auto physicsBody = PhysicsBody::createBox(Size(10.0f, 60.0f));
+	auto physicsBody = PhysicsBody::createCircle(10,PhysicsMaterial(.1,2,.1), Vec2(0,0));
+
 	physicsBody->setCategoryBitmask(1);
 	physicsBody->setCollisionBitmask(0xfe);
 	physicsBody->setContactTestBitmask(0xfe);
@@ -13,7 +14,7 @@ bool Bullet::init(){
 }
 
 
-Bullet* Bullet::create(Scene *pScene, Vec2 pos, Vec2 target){
+Bullet* Bullet::create(Scene *pScene, Vec2 pos, Vec2 target){	
 	auto bullet = Bullet::create();
 	bullet->_scene = pScene;
 	bullet->setRotation(CC_RADIANS_TO_DEGREES(atan(target.x / target.y)));

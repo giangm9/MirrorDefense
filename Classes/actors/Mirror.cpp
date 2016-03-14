@@ -8,7 +8,7 @@
 bool Mirror::init(){
 	Actor::init();
 	setTag(TAG_MIRROR);
-	auto physicsBody = PhysicsBody::createBox(Size(200.0f, 30.0f),PhysicsMaterial(0,.5,0));
+	auto physicsBody = PhysicsBody::createBox(Size(400.0f, 30.0f),PhysicsMaterial(0,.5,0));
 	physicsBody->setGravityEnable(false);
 	physicsBody->setDynamic(false);
 	physicsBody->setContactTestBitmask(0xff);
@@ -22,7 +22,7 @@ bool Mirror::init(){
 	sprite->setPosition(Vec2(0,0));
 	sprite->setTag(1);
 
-	setRotation(30);
+	setRotation(160);
 
 	_listener = EventListenerTouchOneByOne::create();
 	//listener->setSwallowTouches(true);

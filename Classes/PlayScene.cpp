@@ -7,35 +7,35 @@ bool PlayScene::init(){
 	Scene::initWithPhysics();
 
 	getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
-	getPhysicsWorld()->setGravity(Vec2(0,0));
-	Point s_centre(800, 200);
+	getPhysicsWorld()->setGravity(Vec2(0,-9));
 
-	auto mirror = Mirror::create(this);
+	for (int i =0; i< 3; i++){
+		auto mirror = Mirror::create(this);
+		mirror->setPosition(Vec2(i*100 + 200, 400));
+		addChild(mirror);
+
+		mirror->setRotation(120*i);
+	}
 
 
-	schedule(CC_SCHEDULE_SELECTOR(PlayScene::tick), 0.5f);
-
-	mirror->setPosition(s_centre);
-	addChild(mirror, 2);
 
 	auto contactListener = EventListenerPhysicsContact::create();
 	contactListener->onContactBegin = CC_CALLBACK_1(PlayScene::onContactBegin,
 																									this);
 	_eventDispatcher->addEventListenerWithFixedPriority(contactListener, 10);
-
+	schedule(CC_SCHEDULE_SELECTOR(PlayScene::tick), 0.3f);
 	return true;
 }
 
 void PlayScene::tick(float dt){
 
-
 	float power = 10000; // its over 9000
-	for (int i = 0; i < 5; i++){
-		auto bullet = Bullet::create(this,
-																 Vec2(0 + i * 20, 200), Vec2(1.0f, 0.00f) * power);
 
-		addChild(bullet);
-	}
+	auto bullet = Bullet::create(this,
+															 Vec2(0 + 20, 400), Vec2(1.0f, 0.00f) * power);
+
+	addChild(bullet);
+
 
 }
 

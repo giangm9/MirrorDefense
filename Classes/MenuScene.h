@@ -1,5 +1,5 @@
-#ifndef _MENUSCENE_SCENE_H_
-#define _MENUSCENE_SCENE_H_
+#ifndef _MENUSCENE_H_
+#define _MENUSCENE_H_
 
 
 
@@ -8,15 +8,16 @@
 using namespace cocos2d;
 
 
-class MenuScene : public cocos2d::Scene
+class MenuScene : public Scene
 {
 public:
 	virtual bool init();
 	CREATE_FUNC(MenuScene)
 private:
+
 };
 
-class MenuLayer : public cocos2d::Layer
+class MenuLayer : public Layer
 {
 
 public:	

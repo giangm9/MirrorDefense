@@ -1,9 +1,11 @@
 #include "GameManager.h"
 #include "PlayScene.h"
+#include "MenuScene.h"
 
-
+USING_NS_CC;
 
 GameManager* GameManager::ms_instance = NULL;
+
 
 GameManager* GameManager::getInstance (){
     if (!ms_instance){
@@ -12,15 +14,15 @@ GameManager* GameManager::getInstance (){
         auto director = Director::getInstance();
 				ms_instance->m_scene = Scene::create();
         director->runWithScene(ms_instance->m_scene);
-				ms_instance->onGameEvent(GE_PLAY);
+				ms_instance->onGameEvent(GE_MAIN);
     }
     return ms_instance;
 }
 
 
 void GameManager::onGameEvent  (GameEvent gameEvent){
-	auto play = PlayScene::create();
-	Director::getInstance()->replaceScene(play);	
+	auto menu = MenuScene::create();
+	Director::getInstance()->replaceScene(menu);	
 	if (gameEvent == GE_MAIN){
 		auto menu = MenuScene::create();
 		Director::getInstance()->replaceScene(menu);
@@ -33,22 +35,30 @@ void GameManager::onGameEvent  (GameEvent gameEvent){
 }
 
 
-float GameManager::getDouble (StogareKey key){
+double GameManager::getDouble (StorageKey key){
+	if (key == SKEY_HP) {
+		return PlayerHP;
+	}
 	return 0;
 }
 
-void GameManager::setDouble (StogareKey key,
+void GameManager::setDouble (StorageKey key,
 	                            double value,
-	                            bool isStogared){
+	                            bool isStoraged){
+	if (key == SKEY_HP) {
+		PlayerHP = value;
+		if (isStoraged) {
 
+		}
+	}
 }
 
-void GameManager::getString (StogareKey key,
+void GameManager::getString (StorageKey key,
 	                            char* str){
 }
 
-void GameManager::setString (StogareKey key,
+void GameManager::setString (StorageKey key,
 	                            char* str,
-	                            bool isStogared){
+	                            bool isStoraged){
 
 }

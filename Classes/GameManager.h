@@ -17,28 +17,29 @@ enum GameEvent{
 
 };
 
-enum StogareKey{
+enum StorageKey{
 	SKEY_HP = 0
 };
 
 /*managing game's state and some resources*/
-class GameManager 
+class GameManager : public cocos2d::Scene
 {
 
 public:
 	static GameManager* getInstance ();
 	void onGameEvent (GameEvent gameEvent);
 
-	float getDouble (StogareKey key);
-	void setDouble (StogareKey key, double value, bool isStogared);
+	double getDouble (StorageKey key);
+	void setDouble (StorageKey key, double value, bool isStoraged);
 
-	void getString (StogareKey key, char* str);
-	void setString (StogareKey key,char* str, bool isStogared);
+	void getString (StorageKey key, char* str);
+	void setString (StorageKey key,char* str, bool isStoraged);
 
 private:
 	static GameManager* ms_instance;
 	GameEvent m_currentEvent;
 	Scene* m_scene;
+	double PlayerHP;
 
 };
 

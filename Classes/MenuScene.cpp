@@ -5,13 +5,13 @@ USING_NS_CC;
 
 bool MenuScene::init()
 {
-	auto scene = Scene::create();
+	Scene::init();
 	
 	auto layer = MenuLayer::create();
 	
-	scene->addChild(layer);
+	this->addChild(layer);
 	
-	return scene;
+	return true;
 }
 
 bool MenuLayer::init()
@@ -21,11 +21,11 @@ bool MenuLayer::init()
         return false;
     }
 	
-	auto visibleSize = Size(300, 400);
-    auto origin = Vec2(300,400);
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	
 	auto playButton = MenuItemImage::create("play_button.png","play_button.png",CC_CALLBACK_1(MenuLayer::menuPlayCallback, this));
-	playButton->setPosition((origin.x - playButton->getContentSize().width)/ 2, (origin.y - playButton->getContentSize().height) /2);
+	playButton->setPosition(Vec2((origin.x + visibleSize.width) / 2,( origin.y + visibleSize.height )/ 2));
 	
 	auto menu = Menu::create(playButton, NULL);
     menu->setPosition(Vec2::ZERO);

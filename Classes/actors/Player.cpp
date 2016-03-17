@@ -11,6 +11,7 @@ bool Player::init(){
 	this->setPhysicsBody(PhysicsBody::createCircle(50));
 	_physicsBody->setCollisionBitmask(0xfe);
 	_physicsBody->setContactTestBitmask(0xfe);
+
 	_isShooting = false;
 	schedule(CC_SCHEDULE_SELECTOR(Player::tick), .1);
 	return true;

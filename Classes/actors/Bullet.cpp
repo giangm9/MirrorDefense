@@ -12,6 +12,7 @@ bool Bullet::init(){
 	physicsBody->setContactTestBitmask(0xfe);
 
 	this->setPhysicsBody(physicsBody);
+	scheduleOnce(CC_SCHEDULE_SELECTOR(Bullet::selfDestruct), 3);
 	return true;
 }
 
@@ -24,4 +25,9 @@ Bullet* Bullet::create(Scene *pScene, Vec2 pos, Vec2 target){
 	bullet->setPosition(pos);
 	bullet->_taget = Vec2(target);
 	return bullet;
+}
+
+
+void Bullet::selfDestruct(float dt){
+	removeFromParentAndCleanup(true);
 }

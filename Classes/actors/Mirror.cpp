@@ -74,14 +74,6 @@ void Mirror::onCollision(PhysicsContact &c, PhysicsBody *b){
 	//log("hi");
 	if (b->getNode()->getTag() == 11){
 
-		auto incommingBullet = static_cast<Bullet*>(b->getNode());
-		//auto reflect = Bullet::create(getScene(), incommingBullet->getPosition(),
-			//														incommingBullet->_taget * -1.1);
-		//getScene()->addChild(reflect);
-
-		//b->getNode()->removeFromParentAndCleanup(true);
-		//log("%.2f %.2f", b->getPosition().x, b->getPosition().y);
-		//log("%.2f %.2f", getPhysicsBody()->getPosition().x, getPhysicsBody()->getPosition().y);
-		//auto bullet = Bullet::create(_scene)
+		auto incommingBullet = static_cast<Bullet*>(b->getNode());		
 	}
 }

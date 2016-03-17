@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "actors/Mirror.h"
 #include "actors/Bullet.h"
+#include "actors/Player.h"
 
 using namespace cocos2d;
 

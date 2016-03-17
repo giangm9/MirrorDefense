@@ -23,7 +23,10 @@ bool PlayScene::init(){
 	contactListener->onContactBegin = CC_CALLBACK_1(PlayScene::onContactBegin,
 																									this);
 	_eventDispatcher->addEventListenerWithFixedPriority(contactListener, 10);
-	schedule(CC_SCHEDULE_SELECTOR(PlayScene::tick), 0.3f);
+
+	auto player = Player::create(this, Vec2(300,200));
+	addChild(player);
+	//schedule(CC_SCHEDULE_SELECTOR(PlayScene::tick), 0.3f);
 	return true;
 }
 

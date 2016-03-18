@@ -1,6 +1,9 @@
 #include "Mirror.h"
 #include "Bullet.h"
 
+#define MIRROR_WIDTH 200
+#define MIRROR_HEIGHT 20
+
 
 #define TAG_MIRROR 10
 
@@ -8,14 +11,12 @@
 bool Mirror::init(){
 	Actor::init();
 	setTag(TAG_MIRROR);
-	auto physicsBody = PhysicsBody::createBox(Size(400.0f, 30.0f),PhysicsMaterial(0,.5,0));
+	auto physicsBody = PhysicsBody::createBox(Size(MIRROR_WIDTH, MIRROR_HEIGHT),PhysicsMaterial(0,.5,0));
 	physicsBody->setGravityEnable(false);
 	physicsBody->setDynamic(false);
 	physicsBody->setContactTestBitmask(0xff);
 
 	this->setPhysicsBody(physicsBody);
-
-
 
 	auto sprite = Sprite::create("mirror.png");
 	addChild(sprite);
@@ -29,13 +30,7 @@ bool Mirror::init(){
 
 	_listener->onTouchBegan = [](Touch *touch , Event * event){
 		auto target = static_cast<Mirror*>(event->getCurrentTarget());
-		//auto world = target->getScene()->getPhysicsWorld();
-
-		if(target->getPosition().distance(touch->getLocation()) < 100){
-
-			return true;
-		}
-		return false;
+		return target->getPhysicsBody()->getShape(0)->containsPoint(touch->getLocation());
 	};
 
 	_listener->onTouchMoved = [](Touch* touch, Event* event){
@@ -56,9 +51,6 @@ bool Mirror::init(){
 
 	};
 
-
-
-
 	return true;
 }
 
@@ -72,8 +64,8 @@ Mirror* Mirror::create(Scene *pScene){
 
 void Mirror::onCollision(PhysicsContact &c, PhysicsBody *b){
 	//log("hi");
-	if (b->getNode()->getTag() == 11){
+	if (b->getNode()->getTag() == TAG_BULLET){
 
-		auto incommingBullet = static_cast<Bullet*>(b->getNode());		
+		//auto incommingBullet = static_cast<Bullet*>(b->getNode());
 	}
 }

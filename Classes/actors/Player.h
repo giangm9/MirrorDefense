@@ -13,6 +13,11 @@ public:
 	bool _isShooting;
 	float _reloadTime;
 
+
+	virtual void setPosition(Vec2 pos);
+	void createRotator();
+	Sprite * _rotator;
+
 private:
 	CREATE_FUNC(Player)
 

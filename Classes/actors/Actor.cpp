@@ -1,4 +1,4 @@
 #include "Actor.h"
+#include <cmath>
 
-void Actor::createRotator(){
-}
+#define TAG_ROTATOR 9

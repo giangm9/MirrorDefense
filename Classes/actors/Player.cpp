@@ -9,6 +9,8 @@ using namespace std;
 bool Player::init(){
 	Actor::init();
 	this->setPhysicsBody(PhysicsBody::createCircle(50));
+
+
 	_physicsBody->setCollisionBitmask(0xfe);
 	_physicsBody->setContactTestBitmask(0xfe);
 
@@ -22,7 +24,7 @@ void Player::tick(float dt){
 
 	if (_isShooting){
 		_reloadTime += dt;
-		if (_reloadTime > .5){
+		if (_reloadTime > .2){
 			_reloadTime = .0;
 			float power = 10000; // its over 9000
 			float x = cos(getRotation());

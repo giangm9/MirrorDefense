@@ -3,7 +3,7 @@
 
 bool Bullet::init(){
 	Actor::init();
-	setTag(11);
+	setTag(TAG_BULLET);
 	auto physicsBody = PhysicsBody::createCircle(10,PhysicsMaterial(.05,2,.1), Vec2(0,0));
 
 
@@ -12,7 +12,7 @@ bool Bullet::init(){
 	physicsBody->setContactTestBitmask(0xfe);
 
 	this->setPhysicsBody(physicsBody);
-	scheduleOnce(CC_SCHEDULE_SELECTOR(Bullet::selfDestruct), 3);
+	scheduleOnce(CC_SCHEDULE_SELECTOR(Bullet::selfDestruct), 10000);
 	return true;
 }
 

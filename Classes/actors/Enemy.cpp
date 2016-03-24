@@ -14,14 +14,13 @@ bool Enemy::init(){
 	this->setPhysicsBody(physicsBody);
 
 	_physicsBody->setGravityEnable(false);
-	_physicsBody->setDynamic(false);
 	_physicsBody->setContactTestBitmask(0xff);
 	_physicsBody->setCollisionBitmask(0xfe);
 	setTag(TAG_ENEMY);
 
-	auto sprite = Sprite::create("Enemy.png");
+	auto sprite = Sprite::create("monster.png");
 	this->addChild(sprite);
-	sprite->setPosition(Vec2(0, 0));
+	sprite->setPosition(Vec2::ZERO);
 	sprite->setTag(17);
 	schedule(CC_SCHEDULE_SELECTOR(Enemy::tick), .1);
 	int _enemyHP = 3;

@@ -22,6 +22,8 @@ GameManager* GameManager::getInstance (){
 
 void GameManager::onGameEvent  (GameEvent gameEvent){
 	auto menu = MenuScene::create();
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	Director::getInstance()->replaceScene(menu);	
 	if (gameEvent == GE_MAIN){
 		auto menu = MenuScene::create();
@@ -29,9 +31,18 @@ void GameManager::onGameEvent  (GameEvent gameEvent){
 	}else if (gameEvent == GE_PLAY){
 		auto play = PlayScene::create();
 		Director::getInstance()->replaceScene(play);
-	}//else if (gameEvent == GE_GAMEOVER){
-//		auto gameover= GameOverLayer::create();
-	//}
+	/*	auto status = StatusLayer::create();
+		statusSize = status->getContentSize();
+		status::setPosition(Vec2((origin.x + visibleSize.width - statusSize.width / 2), 0));
+		play->addChild(status);
+	*/
+	}/*else if (gameEvent == GE_GAMEOVER){
+		auto gameover = ResultLayer::create();
+		gameover::setPosition(Vec2::ZERO);
+		play->addChild(gameover);
+	}*/
+	//all above comment will be code in gameEvent when the mention layer is completed
+	//required play layer can be pause for event gameover
 }
 
 

@@ -11,8 +11,9 @@ bool Player::init(){
 	this->setPhysicsBody(PhysicsBody::createCircle(50));
 
 
-	_physicsBody->setCollisionBitmask(0xfe);
-	_physicsBody->setContactTestBitmask(0xfe);
+	_physicsBody->setCategoryBitmask(PLAYER_CATEGORY_BITMASK);
+	_physicsBody->setCollisionBitmask(PLAYER_COLLISION_BITMASK);
+	_physicsBody->setContactTestBitmask(PLAYER_TEST_BITMASK);
 	_physicsBody->setGravityEnable(false);
 
 	_isShooting = false;
@@ -25,7 +26,7 @@ void Player::tick(float dt){
 
 	if (_isShooting){
 		_reloadTime += dt;
-		if (_reloadTime > .2){
+		if (_reloadTime > .5){
 			_reloadTime = .0;
 			float power = 10000; // its over 9000
 			float x = -cos(CC_DEGREES_TO_RADIANS(getRotation()));

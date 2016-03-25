@@ -7,12 +7,12 @@ bool Bullet::init(){
 	auto physicsBody = PhysicsBody::createCircle(10,PhysicsMaterial(.05,2,.1), Vec2(0,0));
 
 
-	physicsBody->setCategoryBitmask(1);
-	physicsBody->setCollisionBitmask(0xfe);
-	physicsBody->setContactTestBitmask(0xfe);
+	physicsBody->setCategoryBitmask(BULLET_CATEGORY_BITMASK);
+	physicsBody->setCollisionBitmask(BULLET_COLLISION_BITMASK);
+	physicsBody->setContactTestBitmask(BULLET_TEST_BITMASK);
 
 	this->setPhysicsBody(physicsBody);
-	scheduleOnce(CC_SCHEDULE_SELECTOR(Bullet::selfDestruct), 10000);
+	scheduleOnce(CC_SCHEDULE_SELECTOR(Bullet::selfDestruct), 10);
 	return true;
 }
 

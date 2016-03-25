@@ -3,9 +3,6 @@
 
 #include "Actor.h"
 
-#define TAG_BULLET 11
-
-
 using namespace cocos2d;
 
 class Bullet : public Actor

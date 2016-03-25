@@ -6,8 +6,7 @@
 class Enemy : public Actor{
 public:
 	virtual bool init();
-	int _enemyHP;
-	void tick(float dt);
+	int _enemyHP;	
 
 	static Enemy *create(Scene* pScene, Vec2 pos);
 	bool _autoMove;
@@ -16,7 +15,10 @@ public:
 
 private:
 	CREATE_FUNC(Enemy)
-	void enemydestruct();
+	void selfDestruct();
+
+	Label* _hpLabel;
+	void showHP();
 };
 
 

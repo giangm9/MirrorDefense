@@ -5,7 +5,6 @@
 #define MIRROR_HEIGHT 20
 
 
-#define TAG_MIRROR 10
 #define TAG_ROTATOR 9
 
 
@@ -16,6 +15,10 @@ bool Mirror::init(){
 	auto physicsBody = PhysicsBody::createBox(Size(MIRROR_WIDTH, MIRROR_HEIGHT),PhysicsMaterial(0,.5,0));
 	physicsBody->setGravityEnable(false);
 	physicsBody->setDynamic(false);
+
+	physicsBody->setCategoryBitmask(MIRROR_CATEGORY_BITMASK);
+	physicsBody->setCollisionBitmask(MIRROR_COLLISION_BITMASK);
+	physicsBody->setContactTestBitmask(MIRROR_TEST_BITMASK);
 	physicsBody->setContactTestBitmask(0xff);
 
 	this->setPhysicsBody(physicsBody);

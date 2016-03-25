@@ -37,7 +37,7 @@ Enemy* Enemy::create(Scene *pScene, Vec2 pos) {
 	enemy->setPosition(pos);
 	enemy->_autoMove = true;
 	Vec2 target = Vec2(640, 350) - pos;
-	enemy->getPhysicsBody()->applyImpulse(target* 50);
+	enemy->getPhysicsBody()->applyImpulse(target* 30);
 	return enemy;
 }
 

@@ -9,6 +9,7 @@ public:
 
 	virtual void onCollision(PhysicsContact &c, PhysicsBody *b);
 	virtual void setPosition(Vec2 pos);
+	virtual void setRotation(float rotation);
 
 	static Mirror* create(Scene* scene);
 	void createRotator();

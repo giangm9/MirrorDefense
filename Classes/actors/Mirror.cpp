@@ -96,7 +96,7 @@ void Mirror::createRotator(){
 		float dy = touch->getLocation().y - target->getPosition().y;
 		target->setRotation(CC_RADIANS_TO_DEGREES(atan2(-dy,dx)));
 
-		target->_rotator->setRotation(CC_RADIANS_TO_DEGREES(atan2(-dy,dx)));
+		//target->_rotator->setRotation(CC_RADIANS_TO_DEGREES(atan2(-dy,dx)));
 	};
 
 	_rotateListener->onTouchEnded = [=](Touch *touch, Event* event){
@@ -110,4 +110,10 @@ void Mirror::createRotator(){
 void Mirror::setPosition(Vec2 pos){
 	Actor::setPosition(pos);
 	_rotator->setPosition(getPosition());
+}
+
+
+void Mirror::setRotation(float rotation){
+	Actor::setRotation(rotation);
+	_rotator->setRotation(rotation);
 }

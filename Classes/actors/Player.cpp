@@ -33,7 +33,7 @@ void Player::tick(float dt){
 
 	if (_isShooting){
 		_reloadTime += dt;
-		if (_reloadTime > .5){
+		if (_reloadTime > .3){
 			_reloadTime = .0;
 			float power = 10000; // its over 9000
 			float x = -cos(CC_DEGREES_TO_RADIANS(getRotation()));

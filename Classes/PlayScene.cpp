@@ -2,6 +2,7 @@
 #include "physics/CCPhysicsBody.h"
 #include "physics/CCPhysicsWorld.h"
 
+#define PI 3.1416
 
 bool PlayScene::init(){
 	Scene::initWithPhysics();
@@ -13,24 +14,26 @@ bool PlayScene::init(){
 																									this);
 	_eventDispatcher->addEventListenerWithFixedPriority(contactListener, 10);
 
-	// creat some actors for testing
-	for (int i = 0; i < 5; i++){
+	// Player
+	auto player = Player::create(this, Vec2(640,350));
+	addChild(player);
+
+	// Mirrors
+	for (int i = 0; i < 4; i++){
 		auto mirror = Mirror::create(this);
-		mirror->setPosition(Vec2(i*100 + 200, 400));
+		mirror->setPosition(Vec2(640 + 300 * sin(i * PI/2 + PI/4),
+														 350 + 300 * cos(i * PI/2 + PI/4)));
+		mirror->setRotation(i * 90 + 45);
 		addChild(mirror);
 
 	}
 
-	auto player = Player::create(this, Vec2(640,350));
-	addChild(player);	
+
 	for (int i = 0; i < 10; i++){
-		auto enemy = Enemy::create(this, Vec2(100 + 100 * i, 100));
+		auto enemy = Enemy::create(this, Vec2(100 + 100 * i, 0));
 		addChild(enemy);
 	}
-
-
-
-
+	schedule(CC_SCHEDULE_SELECTOR(PlayScene::tick), .1);
 	return true;
 }
 
@@ -47,8 +50,10 @@ bool PlayScene::onContactBegin(PhysicsContact &contact){
 		(static_cast<Actor*>(nodeB))->onCollision(contact,
 																							nodeA->getPhysicsBody());
 	}
-
 	return true;
 }
 
 
+void PlayScene::tick(float dt){
+
+}

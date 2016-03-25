@@ -18,6 +18,7 @@ public:
 	bool onContactBegin(PhysicsContact&);
 
 	CREATE_FUNC(PlayScene)
+	void tick(float dt);
 private:
 
 };

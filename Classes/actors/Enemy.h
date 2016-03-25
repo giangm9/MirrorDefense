@@ -14,8 +14,7 @@ public:
 	virtual void onCollision(PhysicsContact &c, PhysicsBody *b);
 
 private:
-	CREATE_FUNC(Enemy)
-	void selfDestruct();
+	CREATE_FUNC(Enemy)	
 
 	Label* _hpLabel;
 	void showHP();

@@ -5,6 +5,7 @@
 #include "actors/Mirror.h"
 #include "actors/Bullet.h"
 #include "actors/Player.h"
+#include "actors/Enemy.h"
 
 using namespace cocos2d;
 
@@ -15,9 +16,8 @@ public:
 	virtual bool init();
 
 	bool onContactBegin(PhysicsContact&);
-	CREATE_FUNC(PlayScene)	
 
-	void tick(float dt);
+	CREATE_FUNC(PlayScene)
 private:
 
 };

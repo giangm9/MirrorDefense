@@ -5,7 +5,7 @@
 
 bool PlayScene::init(){
 	Scene::initWithPhysics();
-
+	//  Physic initial
 	getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 	getPhysicsWorld()->setGravity(Vec2(0,0));
 	auto contactListener = EventListenerPhysicsContact::create();
@@ -13,25 +13,27 @@ bool PlayScene::init(){
 																									this);
 	_eventDispatcher->addEventListenerWithFixedPriority(contactListener, 10);
 
-
-	for (int i =0; i < 5; i++){
+	// creat some actors for testing
+	for (int i = 0; i < 5; i++){
 		auto mirror = Mirror::create(this);
 		mirror->setPosition(Vec2(i*100 + 200, 400));
 		addChild(mirror);
 
-		mirror->setRotation(120*i);
 	}
 
-	auto player = Player::create(this, Vec2(300,200));
-	addChild(player);
-	//schedule(CC_SCHEDULE_SELECTOR(PlayScene::tick), 0.3f);
+	auto player = Player::create(this, Vec2(640,350));
+	addChild(player);	
+	for (int i = 0; i < 10; i++){
+		auto enemy = Enemy::create(this, Vec2(100 + 100 * i, 100));
+		addChild(enemy);
+	}
+
+
+
+
 	return true;
 }
 
-void PlayScene::tick(float dt){
-
-
-}
 
 bool PlayScene::onContactBegin(PhysicsContact &contact){	
 	auto nodeA = contact.getShapeA()->getBody()->getNode();
@@ -48,3 +50,5 @@ bool PlayScene::onContactBegin(PhysicsContact &contact){
 
 	return true;
 }
+
+

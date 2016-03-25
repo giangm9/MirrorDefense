@@ -17,8 +17,12 @@ public:
 	void createRotator();
 	Sprite * _rotator;
 
+	virtual void onCollision(PhysicsContact &c, PhysicsBody *b);
 private:
 	CREATE_FUNC(Player)
+
+	Label * _hpLabel;
+	void showHP();
 
 };
 

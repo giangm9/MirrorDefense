@@ -8,6 +8,7 @@ using namespace std;
 
 bool Player::init(){
 	Actor::init();
+	setTag(TAG_PLAYER);
 	this->setPhysicsBody(PhysicsBody::createCircle(50));
 
 
@@ -18,6 +19,12 @@ bool Player::init(){
 
 	_isShooting = false;
 	schedule(CC_SCHEDULE_SELECTOR(Player::tick), .1);
+
+	_hitPoint = 10;
+
+	_hpLabel = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
+	showHP();
+	addChild(_hpLabel);
 	return true;
 }
 
@@ -94,5 +101,19 @@ void Player::setPosition(Vec2 pos){
 	Actor::setPosition(pos);
 	if (_rotator){
 		_rotator->setPosition(getPosition());
+	}
+}
+
+void Player::showHP(){
+	char hp[0xf];
+	sprintf(hp, "%d", _hitPoint);
+	_hpLabel->setString(hp);
+}
+
+void Player::onCollision(PhysicsContact &c, PhysicsBody *b){
+	if (b->getNode()->getTag() == TAG_ENEMY){
+		_hitPoint --;
+		showHP();
+
 	}
 }

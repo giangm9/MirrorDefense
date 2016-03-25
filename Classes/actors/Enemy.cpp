@@ -13,10 +13,13 @@ bool Enemy::init(){
 	auto physicsBody = PhysicsBody::createPolygon(x, 3);
 	this->setPhysicsBody(physicsBody);
 
+
 	_physicsBody->setGravityEnable(false);
 	_physicsBody->setCategoryBitmask(ENEMY_CATEGORY_BITMASK);
 	_physicsBody->setCollisionBitmask(ENEMY_COLLISION_BITMASK);
 	_physicsBody->setContactTestBitmask(ENEMY_TEST_BITMASK);
+
+
 
 	setTag(TAG_ENEMY);
 
@@ -34,7 +37,7 @@ Enemy* Enemy::create(Scene *pScene, Vec2 pos) {
 	enemy->setPosition(pos);
 	enemy->_autoMove = true;
 	Vec2 target = Vec2(640, 350) - pos;
-	enemy->getPhysicsBody()->applyImpulse(target* 10);
+	enemy->getPhysicsBody()->applyImpulse(target* 50);
 	return enemy;
 }
 
@@ -49,6 +52,10 @@ void Enemy::onCollision(PhysicsContact &c, PhysicsBody *b) {
 		if (_enemyHP == 0){
 			selfDestruct();
 		}
+	}
+
+	if (b->getNode()->getTag() == TAG_PLAYER){
+		selfDestruct();
 	}
 }
 

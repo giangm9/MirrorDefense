@@ -18,6 +18,7 @@ public:
 	bool onContactBegin(PhysicsContact&);
 
 	CREATE_FUNC(PlayScene)
+	float _totalTime;
 	void tick(float dt);
 private:
 

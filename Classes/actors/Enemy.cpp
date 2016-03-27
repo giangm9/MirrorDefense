@@ -35,7 +35,9 @@ Enemy* Enemy::create(Scene *pScene, Vec2 pos, EnemyMovingRole role) {
 	auto enemy = Enemy::create();
 	enemy->_scene = pScene;
 	enemy->setPosition(pos);	
+	enemy->_startPos = pos;
 	enemy->_role = role;
+	enemy->_player = static_cast<Player*>(pScene->getChildByTag(TAG_PLAYER));
 	return enemy;
 }
 
@@ -61,7 +63,7 @@ void Enemy::showHP(){
 
 Vec2 Enemy::positionOnTime(float time){
 	if (_role == EMR_LINE){
-		return Vec2(time * 50, time * 50);
+		return _startPos + (_player->getPosition() - _startPos) * .1 * time;
 	} else if (_role == EMR_PARABOL){
 		return Vec2(time * 50, time * time * 10);
 	}

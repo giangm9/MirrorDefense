@@ -2,6 +2,7 @@
 #define __ENEMY_H__
 
 #include "Actor.h"
+#include "Player.h"
 
 enum EnemyMovingRole{
 	EMR_LINE = 0,
@@ -19,6 +20,9 @@ public:
 
 	virtual void onCollision(PhysicsContact &c, PhysicsBody *b);
 
+
+	Player *_player;
+	Vec2 _startPos;
 	void tick(float dt);
 	EnemyMovingRole _role;
 	Vec2 positionOnTime(float time);

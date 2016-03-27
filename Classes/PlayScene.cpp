@@ -27,13 +27,7 @@ bool PlayScene::init(){
 		addChild(mirror);
 	}
 
-	for (int i = 0; i < 1; i++){
-
-		auto enemy = Enemy::create(this, Vec2(100 + 100 * i, 0));
-		addChild(enemy);
-	}
-	auto enemy = Enemy::create(this, Vec2(100 + 100, 0),  EMR_PARABOL);
-	addChild(enemy);
+	_totalTime = 0;
 	schedule(CC_SCHEDULE_SELECTOR(PlayScene::tick), 1.0f/60.0f);
 	return true;
 }
@@ -55,5 +49,13 @@ bool PlayScene::onContactBegin(PhysicsContact &contact){
 
 
 void PlayScene::tick(float dt){
+	_totalTime += dt;
+	if (_totalTime > 1 && _totalTime < 2) {
+		Vec2 cornors[] = {Vec2(0,768), Vec2(1024, 768),
+						  Vec2(1024, 0), Vec2(0,0)};
 
+		auto enemy = Enemy::create(this, cornors[rand() % 4]);
+		addChild(enemy);
+		_totalTime = .0;
+	}
 }

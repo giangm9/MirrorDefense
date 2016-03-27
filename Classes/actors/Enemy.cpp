@@ -4,13 +4,11 @@
 #include <algorithm>
 
 
-
 using namespace std;
 
 bool Enemy::init(){
 	Actor::init();
 	setTag(TAG_ENEMY);
-
 
 	Vec2 x[] = { Vec2(43, -43), Vec2(-43, -43), Vec2(0, 50) };
 	auto physicsBody = PhysicsBody::createPolygon(x, 3);
@@ -20,24 +18,24 @@ bool Enemy::init(){
 	_physicsBody->setCollisionBitmask(ENEMY_COLLISION_BITMASK);
 	_physicsBody->setContactTestBitmask(ENEMY_TEST_BITMASK);
 
-
-
 	_enemyHP = 7;
 	_hpLabel = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
 	_hpLabel->setPosition(0,0);
 	addChild(_hpLabel);	
 	showHP();
 
+	_totalTime = .0f;
+
+	schedule(CC_SCHEDULE_SELECTOR(Enemy::tick), 1.0f/60.0f);
 
 	return true;
 }
 
-Enemy* Enemy::create(Scene *pScene, Vec2 pos) {
+Enemy* Enemy::create(Scene *pScene, Vec2 pos, EnemyMovingRole role) {
 	auto enemy = Enemy::create();
 	enemy->_scene = pScene;
 	enemy->setPosition(pos);	
-	Vec2 target = Vec2(640, 350) - pos;
-	enemy->getPhysicsBody()->applyImpulse(target* 30);
+	enemy->_role = role;
 	return enemy;
 }
 
@@ -59,4 +57,19 @@ void Enemy::showHP(){
 	char hp[0xf];
 	sprintf(hp, "%d", _enemyHP);
 	_hpLabel->setString(hp);
+}
+
+Vec2 Enemy::positionOnTime(float time){
+	if (_role == EMR_LINE){
+		return Vec2(time * 50, time * 50);
+	} else if (_role == EMR_PARABOL){
+		return Vec2(time * 50, time * time * 10);
+	}
+
+}
+
+
+void Enemy::tick(float dt){
+	_totalTime += dt;
+	setPosition(positionOnTime(_totalTime));
 }

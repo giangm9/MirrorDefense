@@ -18,7 +18,8 @@ enum GameEvent{
 };
 
 enum StorageKey{
-	SKEY_HP = 0
+	SKEY_HP = 0,
+	SKEY_SCORE
 };
 
 /*managing game's state and some resources*/
@@ -39,7 +40,8 @@ private:
 	static GameManager* ms_instance;
 	GameEvent m_currentEvent;
 	Scene* m_scene;
-	double PlayerHP;
+	double _playerHP;
+	double _playerScore;
 
 };
 

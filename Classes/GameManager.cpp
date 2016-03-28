@@ -41,14 +41,17 @@ void GameManager::onGameEvent  (GameEvent gameEvent){
 		gameover::setPosition(Vec2::ZERO);
 		play->addChild(gameover);
 	}*/
-	//all above comment will be code in gameEvent when the mention layer is completed
+	//all above comment will be code in gameEvent when the mentioned layer is completed
 	//required play layer can be pause for event gameover
 }
 
 
 double GameManager::getDouble (StorageKey key){
 	if (key == SKEY_HP) {
-		return PlayerHP;
+		return _playerHP;
+	}
+	else if (key == SKEY_SCORE) {
+		return _playerScore;
 	}
 	return 0;
 }
@@ -57,11 +60,15 @@ void GameManager::setDouble (StorageKey key,
 	                            double value,
 	                            bool isStoraged){
 	if (key == SKEY_HP) {
-		PlayerHP = value;
+		_playerHP = value;
 		if (isStoraged) {
 
 		}
 	}
+	else if (key == SKEY_SCORE) {
+		_playerScore = value;
+	}
+
 }
 
 void GameManager::getString (StorageKey key,

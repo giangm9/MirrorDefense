@@ -1,7 +1,7 @@
 #include "GameManager.h"
 #include "PlayScene.h"
 #include "MenuScene.h"
-
+#include "StatusLayer.h"
 USING_NS_CC;
 
 GameManager* GameManager::ms_instance = NULL;
@@ -21,21 +21,21 @@ GameManager* GameManager::getInstance (){
 
 
 void GameManager::onGameEvent  (GameEvent gameEvent){
-	auto menu = MenuScene::create();
+	//auto menu = MenuScene::create();
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-	Director::getInstance()->replaceScene(menu);	
+	//Director::getInstance()->replaceScene(menu);	
 	if (gameEvent == GE_MAIN){
 		auto menu = MenuScene::create();
 		Director::getInstance()->replaceScene(menu);
 	}else if (gameEvent == GE_PLAY){
 		auto play = PlayScene::create();
 		Director::getInstance()->replaceScene(play);
-	/*	auto status = StatusLayer::create();
+		/*auto status = StatusLayer::create();
 		statusSize = status->getContentSize();
 		status::setPosition(Vec2((origin.x + visibleSize.width - statusSize.width / 2), 0));
-		play->addChild(status);
-	*/
+		play->addChild(status);*/
+	
 	}/*else if (gameEvent == GE_GAMEOVER){
 		auto gameover = ResultLayer::create();
 		gameover::setPosition(Vec2::ZERO);

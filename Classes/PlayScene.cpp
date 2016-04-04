@@ -1,3 +1,4 @@
+#include "GameManager.h"
 #include "PlayScene.h"
 #include "physics/CCPhysicsBody.h"
 #include "physics/CCPhysicsWorld.h"
@@ -49,6 +50,11 @@ bool PlayScene::onContactBegin(PhysicsContact &contact){
 
 
 void PlayScene::tick(float dt){
+    Player* player = (Player*)getChildByTag(TAG_PLAYER);
+    if (player->_hitPoint == 0){
+        GameManager::getInstance()->onGameEvent(GE_GAMEOVER);
+    }
+
     _totalTime += dt;
     if (_totalTime > 1 && _totalTime < 2) {
         Vec2 cornors[] = {Vec2(0,768), Vec2(1024, 768),

@@ -20,7 +20,6 @@ public:
 
 	virtual void onCollision(PhysicsContact &c, PhysicsBody *b);
 
-
 	Player *_player;
 	Vec2 _startPos;
 	void tick(float dt);

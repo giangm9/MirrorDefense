@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include "Bullet.h"
 #include "Player.h"
+#include "GameManager.h"
 #include <algorithm>
 
 
@@ -47,6 +48,8 @@ void Enemy::onCollision(PhysicsContact &c, PhysicsBody *b) {
         showHP();
         if (_enemyHP == 0){
             removeFromParentAndCleanup(true);
+            double currentscore = GameManager::getInstance()->getDouble(SKEY_SCORE);
+            GameManager::getInstance()->setDouble(SKEY_SCORE, currentscore + 1, false);
         }
     }
 

@@ -12,7 +12,8 @@ public:
     virtual bool init();
     CREATE_FUNC(StatusLayer)
 
-    Label *_hpLabel;
+    Label *_hpLabel, *_scoreLabel;
+
     void updateStatus(float dt = 0 );
 };
 

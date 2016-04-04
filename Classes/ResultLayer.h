@@ -9,4 +9,5 @@ public:
     virtual bool init();
     CREATE_FUNC(ResultLayer)
 
-}
+    void replayButtonCallback(cocos2d::Ref* pSender);
+};

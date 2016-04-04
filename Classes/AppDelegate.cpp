@@ -80,7 +80,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // run
     //director->runWithScene(scene);
-    GameManager::getInstance();
+    GameManager::getInstance()->onGameEvent(GE_MAIN);
 
 
     return true;

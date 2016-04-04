@@ -31,10 +31,10 @@ void GameManager::onGameEvent  (GameEvent gameEvent){
 	}else if (gameEvent == GE_PLAY){
 		auto play = PlayScene::create();
 		Director::getInstance()->replaceScene(play);
-		/*auto status = StatusLayer::create();
-		statusSize = status->getContentSize();
-		status::setPosition(Vec2((origin.x + visibleSize.width - statusSize.width / 2), 0));
-		play->addChild(status);*/
+        auto status = StatusLayer::create();
+        //statusSize = status->getContentSize();
+        //status::setPosition(Vec2((origin.x + visibleSize.width - statusSize.width / 2), 0));
+        play->addChild(status);
 	
 	}/*else if (gameEvent == GE_GAMEOVER){
 		auto gameover = ResultLayer::create();

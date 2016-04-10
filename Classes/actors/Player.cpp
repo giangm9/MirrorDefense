@@ -18,6 +18,9 @@ bool Player::init(){
     _physicsBody->setContactTestBitmask(PLAYER_TEST_BITMASK);
     _physicsBody->setGravityEnable(false);
 
+	auto sprite = Sprite::create("gun.png");
+	addChild(sprite);
+
     _isShooting = false;
     schedule(CC_SCHEDULE_SELECTOR(Player::tick), .1);
 

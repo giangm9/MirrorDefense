@@ -24,7 +24,7 @@ bool Mirror::init(){
 	this->setPhysicsBody(physicsBody);
 
 	auto sprite = Sprite::create("mirror.png");
-	addChild(sprite);
+	addChild(sprite, 1);
 	sprite->setPosition(Vec2(0,0));
 	sprite->setTag(1);
 
@@ -75,7 +75,7 @@ void Mirror::createRotator(){
 	_rotator = Sprite::create("rotator.png");
 	_rotator->setPosition(getPosition());
 	_rotator->setAnchorPoint(Vec2(-2, .5));
-	_scene->addChild(_rotator);
+	_scene->addChild(_rotator, 10);
 
 
 	auto _rotateListener = EventListenerTouchOneByOne::create();

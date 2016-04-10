@@ -8,8 +8,15 @@
 bool PlayScene::init(){
     Scene::initWithPhysics();
 
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+
+	auto sprite = Sprite::create("background.jpg");
+	sprite->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	this->addChild(sprite, 0);
+
+
     //  Physic initial
-    getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_NONE);
     getPhysicsWorld()->setGravity(Vec2(0,0));
     auto contactListener = EventListenerPhysicsContact::create();
     contactListener->onContactBegin = CC_CALLBACK_1(PlayScene::onContactBegin,this);

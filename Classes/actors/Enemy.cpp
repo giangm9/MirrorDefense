@@ -19,6 +19,9 @@ bool Enemy::init(){
     _physicsBody->setCollisionBitmask(ENEMY_COLLISION_BITMASK);
     _physicsBody->setContactTestBitmask(ENEMY_TEST_BITMASK);
 
+	auto sprite = Sprite::create("monster.png");
+	addChild(sprite);
+
     _enemyHP = 5;
     _hpLabel = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
     _hpLabel->setPosition(0,0);

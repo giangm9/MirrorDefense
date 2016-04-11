@@ -21,6 +21,10 @@ bool MenuLayer::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	
+	auto sprite = Sprite::create("hello.png");
+	sprite->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	this->addChild(sprite, 0);
+
 	auto playButton = MenuItemImage::create("play_button.png","play_button.png",CC_CALLBACK_1(MenuLayer::menuPlayCallback, this));
 	playButton->setPosition(Vec2((origin.x + visibleSize.width) / 2,( origin.y + visibleSize.height )/ 2));
 	

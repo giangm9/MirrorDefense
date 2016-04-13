@@ -57,6 +57,7 @@ bool PlayScene::onContactBegin(PhysicsContact &contact){
 
 
 void PlayScene::tick(float dt){
+	//Code here
     Player* player = (Player*)getChildByTag(TAG_PLAYER);
     if (player->_hitPoint == 0){
         GameManager::getInstance()->onGameEvent(GE_GAMEOVER);
@@ -64,10 +65,14 @@ void PlayScene::tick(float dt){
 
     _totalTime += dt;
     if (_totalTime > 1 && _totalTime < 2) {
-        Vec2 cornors[] = {Vec2(0,768), Vec2(1024, 768),
-                          Vec2(1024, 0), Vec2(0,0)};
-
-        auto enemy = Enemy::create(this, cornors[rand() % 4]);
+		Vec2 pos;
+		while (1)
+		{
+			pos.x = rand() % 1024;
+			pos.y = rand() % 768;
+			if (getChildByTag(TAG_PLAYER)->getPosition().distance(pos) > 350) break;
+		}
+		auto enemy = Enemy::create(this, pos);
         addChild(enemy);
         _totalTime = .0;
     }

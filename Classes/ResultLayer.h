@@ -10,4 +10,5 @@ public:
     CREATE_FUNC(ResultLayer)
 
     void replayButtonCallback(cocos2d::Ref* pSender);
+	void quitButtonCallback(cocos2d::Ref* pSender);
 };

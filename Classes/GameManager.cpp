@@ -2,6 +2,8 @@
 #include "PlayScene.h"
 #include "MenuScene.h"
 #include "StatusLayer.h"
+#include "ResultLayer.h"
+
 USING_NS_CC;
 
 GameManager* GameManager::ms_instance = NULL;
@@ -34,13 +36,14 @@ void GameManager::onGameEvent  (GameEvent gameEvent){
         auto status = StatusLayer::create();
         Size statusSize = status->getContentSize();
         status->setPosition(Vec2((origin.x + visibleSize.width - statusSize.width / 2), 0));
-        play->addChild(status);
-	
-	}/*else if (gameEvent == GE_GAMEOVER){
+        play->addChild(status);	
+	}else if (gameEvent == GE_GAMEOVER){
+		auto scene = Director::getInstance()->getRunningScene();
 		auto gameover = ResultLayer::create();
-		gameover::setPosition(Vec2::ZERO);
-		play->addChild(gameover);
-	}*/
+		Size statusSize = gameover->getContentSize();
+		gameover->setPosition(Vec2((origin.x + visibleSize.width - statusSize.width / 2), 0));
+		scene->addChild(gameover, 100);
+	}
 	//all above comment will be code in gameEvent when the mentioned layer is completed
 	//required play layer can be pause for event gameover
 }

@@ -59,8 +59,9 @@ bool PlayScene::onContactBegin(PhysicsContact &contact){
 void PlayScene::tick(float dt){
     Player* player = (Player*)getChildByTag(TAG_PLAYER);
     if (player->_hitPoint == 0){
-        GameManager::getInstance()->onGameEvent(GE_GAMEOVER);
-    }
+		GameManager::getInstance()->onGameEvent(GE_GAMEOVER);
+		return;
+	}
 
     _totalTime += dt;
     if (_totalTime > 1 && _totalTime < 2) {

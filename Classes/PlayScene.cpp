@@ -67,12 +67,14 @@ void PlayScene::tick(float dt){
     _totalTime += dt;
     if (_totalTime > 1 && _totalTime < 2) {
 		Vec2 pos;
-		while (1)
+		/*while (1)
 		{
 			pos.x = rand() % 1024;
 			pos.y = rand() % 768;
 			if (getChildByTag(TAG_PLAYER)->getPosition().distance(pos) > 350) break;
-		}
+		}*/
+		pos = getChildByTag(TAG_PLAYER)->getPosition();
+		pos.y += 350;
 		auto enemy = Enemy::create(this, pos);
         addChild(enemy);
         _totalTime = .0;

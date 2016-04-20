@@ -67,13 +67,52 @@ void Enemy::showHP(){
     _hpLabel->setString(hp);
 }
 
+float min_float(float a, float b)
+{
+	if (a < b) return a;
+	return b;
+}
+
 Vec2 Enemy::positionOnTime(float time){
-    if (_role == EMR_LINE){
+	//Code here
+    /*if (_role == EMR_LINE){
         return _startPos + (_player->getPosition() - _startPos) * .1 * time;
     } else if (_role == EMR_PARABOL){
         return Vec2(time * 50, time * time * 10);
-    }
-
+    }*/
+	float time_ = time;
+	float speed = .2;
+	float change = 5;
+	Vec2 current_pos ;
+	Vec2 goal = _player->getPosition();
+	goal.x -= 350;
+	current_pos = _startPos + (goal - _startPos) * speed * min_float(time_ ,10);	
+	Vec2 tmp_pos = current_pos;
+	time_ -= change;
+	if (time_ > 0)
+	{
+		goal.x += 350;
+		goal.y -= 350;
+		current_pos = tmp_pos + (goal - tmp_pos) * speed * min_float(time_, 10);
+	}
+	else return current_pos;
+	tmp_pos = current_pos;
+	time_ -= change;
+	if (time_ > 0)
+	{
+		goal.x += 350;
+		goal.y += 350;
+		current_pos = tmp_pos + (goal - tmp_pos) * speed * min_float(time_, 10);
+	}
+	else return current_pos;
+	tmp_pos = current_pos;
+	time_ -= change;
+	if (time_ > 0)
+	{
+		current_pos = tmp_pos + (_player->getPosition() - tmp_pos) * speed * time_;
+	}
+	else return current_pos;
+	return current_pos;
 }
 
 void Enemy::tick(float dt){

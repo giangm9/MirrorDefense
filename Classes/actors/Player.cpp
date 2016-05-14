@@ -37,16 +37,19 @@ void Player::tick(float dt){
 
     if (_isShooting){
         _reloadTime += dt;
-        if (_reloadTime > .3){
+        if (_reloadTime > 1){
             _reloadTime = .0;
             float power = 10000; // its over 9000
             float x = -cos(CC_DEGREES_TO_RADIANS(getRotation()));
             float y = sin(CC_DEGREES_TO_RADIANS(getRotation()));
 
-            auto bullet = Bullet::create(_scene,
-                                         getPosition() + Vec2(x * 10, y * 10),
+            for (int i = 0; i < 10; ++i){
+                auto bullet = Bullet::create(_scene,
+                                         getPosition() + Vec2(x * 10 * i, y * 10 * i),
                                          Vec2(x,y) * power);
             _scene->addChild(bullet);
+            }
+            
         }
 
     }

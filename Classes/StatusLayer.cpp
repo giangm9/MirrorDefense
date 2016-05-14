@@ -5,10 +5,13 @@ bool StatusLayer::init(){
     Layer::init();
     _hpLabel = Label::createWithTTF("HP :", "fonts/Marker Felt.ttf", 24);
     _hpLabel->setPosition(30, 600);
+    _hpLabel->setColor(Color3B(255, 0, 0));
+
     addChild(_hpLabel);
 
     _scoreLabel = Label::createWithTTF("Score : ", "fonts/Marker Felt.ttf", 24);
     _scoreLabel->setPosition(30, 540);
+    _scoreLabel->setColor(Color3B(255, 0, 0));
     addChild(_scoreLabel);
 
     updateStatus();

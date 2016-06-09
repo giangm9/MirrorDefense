@@ -4,7 +4,6 @@
 #include "GameManager.h"
 #include <algorithm>
 
-
 using namespace std;
 
 bool Enemy::init(){
@@ -21,8 +20,7 @@ bool Enemy::init(){
 
 	auto sprite = Sprite::create("monster.png");
 	addChild(sprite);
-
-    _enemyHP = 5;
+	_enemyHP = 25;
     _hpLabel = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
     _hpLabel->setPosition(0,0);
     addChild(_hpLabel);
@@ -42,6 +40,7 @@ Enemy* Enemy::create(Scene *pScene, Vec2 pos, EnemyMovingRole role) {
     enemy->_startPos = pos;
     enemy->_role = role;
     enemy->_player = static_cast<Player*>(pScene->getChildByTag(TAG_PLAYER));
+	enemy->_enemyHP = 25;
     return enemy;
 }
 

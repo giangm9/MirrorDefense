@@ -31,8 +31,7 @@ bool Enemy::init(){
     return true;
 }
 
-Enemy* Enemy::create(Scene *pScene, Vec2 pos, int HP, EnemyMovingRole role) {
-	log(GameManager::getInstance()->getDouble(SKEY_SCORE));
+Enemy* Enemy::create(Scene *pScene, Vec2 pos, int HP, EnemyMovingRole role) {	
     auto enemy = Enemy::create();
     enemy->_scene = pScene;
     enemy->setPosition(pos);

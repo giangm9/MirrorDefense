@@ -19,6 +19,8 @@ public:
 
 	CREATE_FUNC(PlayScene)
 	float _totalTime;
+	int _HP;
+	int _totalEnemy;
 	void tick(float dt);
 private:
 

@@ -31,7 +31,7 @@ bool Enemy::init(){
     return true;
 }
 
-Enemy* Enemy::create(Scene *pScene, Vec2 pos, EnemyMovingRole role) {
+Enemy* Enemy::create(Scene *pScene, Vec2 pos, int HP, EnemyMovingRole role) {
 	log(GameManager::getInstance()->getDouble(SKEY_SCORE));
     auto enemy = Enemy::create();
     enemy->_scene = pScene;
@@ -39,7 +39,7 @@ Enemy* Enemy::create(Scene *pScene, Vec2 pos, EnemyMovingRole role) {
     enemy->_startPos = pos;
     enemy->_role = role;
     enemy->_player = static_cast<Player*>(pScene->getChildByTag(TAG_PLAYER));
-	enemy->_enemyHP = 50;
+	enemy->_enemyHP = HP;
 	enemy->showHP();
     return enemy;
 }

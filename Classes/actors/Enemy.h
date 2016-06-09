@@ -12,9 +12,9 @@ enum EnemyMovingRole{
 class Enemy : public Actor{
 public:
 	virtual bool init();
-	int _enemyHP;	
+	int _enemyHP;		
 
-	static Enemy *create(Scene* pScene, Vec2 pos,
+	static Enemy *create(Scene* pScene, Vec2 pos, int HP,
 						 EnemyMovingRole role = EMR_LINE);
 	bool _autoMove;
 

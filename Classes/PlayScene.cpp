@@ -36,6 +36,8 @@ bool PlayScene::init(){
     }
 
     _totalTime = 0;
+	_HP = 30;
+	_totalEnemy = 0;
     schedule(CC_SCHEDULE_SELECTOR(PlayScene::tick), 1.0f/60.0f);
     return true;
 }
@@ -73,10 +75,16 @@ void PlayScene::tick(float dt){
 			pos.y = rand() % 768;
 			if (getChildByTag(TAG_PLAYER)->getPosition().distance(pos) > 350) break;
 		}*/
+		if (_totalEnemy == 50)
+		{
+			_HP += 10;
+			_totalEnemy = 0;
+		}
 		pos = getChildByTag(TAG_PLAYER)->getPosition();
 		pos.y += 350;
-		auto enemy = Enemy::create(this, pos);
+		auto enemy = Enemy::create(this, pos , _HP);
         addChild(enemy);
+		++_totalEnemy;
         _totalTime = .0;
     }
 }

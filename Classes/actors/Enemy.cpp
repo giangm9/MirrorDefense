@@ -19,12 +19,10 @@ bool Enemy::init(){
     _physicsBody->setContactTestBitmask(ENEMY_TEST_BITMASK);
 
 	auto sprite = Sprite::create("monster.png");
-	addChild(sprite);
-	_enemyHP = 25;
+	addChild(sprite);	
     _hpLabel = Label::createWithTTF("", "fonts/Marker Felt.ttf", 24);
     _hpLabel->setPosition(0,0);
-    addChild(_hpLabel);
-    showHP();
+    addChild(_hpLabel);    
 
     _totalTime = .0f;
 
@@ -34,13 +32,15 @@ bool Enemy::init(){
 }
 
 Enemy* Enemy::create(Scene *pScene, Vec2 pos, EnemyMovingRole role) {
+	log(GameManager::getInstance()->getDouble(SKEY_SCORE));
     auto enemy = Enemy::create();
     enemy->_scene = pScene;
     enemy->setPosition(pos);
     enemy->_startPos = pos;
     enemy->_role = role;
     enemy->_player = static_cast<Player*>(pScene->getChildByTag(TAG_PLAYER));
-	enemy->_enemyHP = 25;
+	enemy->_enemyHP = 50;
+	enemy->showHP();
     return enemy;
 }
 

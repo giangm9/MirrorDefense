@@ -31,6 +31,7 @@ void GameManager::onGameEvent  (GameEvent gameEvent){
 		auto menu = MenuScene::create();
 		Director::getInstance()->replaceScene(menu);
 	}else if (gameEvent == GE_PLAY){
+		_playerScore = 0;
 		auto play = PlayScene::create();
 		Director::getInstance()->replaceScene(play);
         auto status = StatusLayer::create();

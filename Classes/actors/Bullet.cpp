@@ -11,8 +11,8 @@ bool Bullet::init(){
 	physicsBody->setCollisionBitmask(BULLET_COLLISION_BITMASK);
 	physicsBody->setContactTestBitmask(BULLET_TEST_BITMASK);
 
-	auto sprite = Sprite::create("bullet.png");
-	addChild(sprite, 10);
+	auto sprite = Sprite::create("round_bullet.png");
+	addChild(sprite, 25);
 
 	this->setPhysicsBody(physicsBody);
 	scheduleOnce(CC_SCHEDULE_SELECTOR(Bullet::selfDestruct), 10);

@@ -10,9 +10,13 @@ bool PlayScene::init(){
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 
-	auto sprite = Sprite::create("background.jpg");
-	sprite->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-	this->addChild(sprite, 0);
+	auto sprite1 = Sprite::create("background.jpg");
+	sprite1->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
+	this->addChild(sprite1, 0);
+
+	auto sprite2 = Sprite::create("body_tank.png");
+	sprite2->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2 - 40));
+	this->addChild(sprite2, 5);
 
 
     //  Physic initial
@@ -24,7 +28,7 @@ bool PlayScene::init(){
 
     // Player
     auto player = Player::create(this, Vec2(640,350));
-    addChild(player);
+    addChild(player, 10);
 
     // Mirrors
     for (int i = 0; i < 4; i++){
@@ -36,7 +40,7 @@ bool PlayScene::init(){
     }
 
     _totalTime = 0;
-	_HP = 30;
+	_HP = 10;
 	_totalEnemy = 0;
     schedule(CC_SCHEDULE_SELECTOR(PlayScene::tick), 1.0f/60.0f);
     return true;

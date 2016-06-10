@@ -39,7 +39,7 @@ bool Mirror::init(){
 	_listener->onTouchMoved = [](Touch* touch, Event* event){
 		auto target = static_cast<Mirror*>(event->getCurrentTarget());
 		target->getPhysicsBody()->setCategoryBitmask(0);
-		target->setPosition(target->getPosition() + touch->getDelta());
+		target->setPosition(target->getPosition() + touch->getDelta());	
 
 	};
 

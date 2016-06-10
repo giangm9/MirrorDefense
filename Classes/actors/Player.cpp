@@ -18,7 +18,7 @@ bool Player::init(){
     _physicsBody->setContactTestBitmask(PLAYER_TEST_BITMASK);
     _physicsBody->setGravityEnable(false);
 
-	auto sprite = Sprite::create("gun.png");
+	auto sprite = Sprite::create("head_tank.png");
 	addChild(sprite);
 
     _isShooting = false;
@@ -42,14 +42,11 @@ void Player::tick(float dt){
             float power = 10000; // its over 9000
             float x = -cos(CC_DEGREES_TO_RADIANS(getRotation()));
             float y = sin(CC_DEGREES_TO_RADIANS(getRotation()));
-
-            for (int i = 0; i < 10; ++i){
-                auto bullet = Bullet::create(_scene,
-                                         getPosition() + Vec2(x * 10 * i, y * 10 * i),
-                                         Vec2(x,y) * power);
-            _scene->addChild(bullet);
-            }
-            
+			
+			for (int i = 0; i < 4; i++) {
+				auto bullet = Bullet::create(_scene, getPosition() + Vec2(x * 20 * i, y * 20 * i), Vec2(x, y) * power);
+				_scene->addChild(bullet);
+			}
         }
 
     }
@@ -72,7 +69,7 @@ void Player::createRotator(){
     _rotator = Sprite::create("rotator.png");
     _rotator->setPosition(getPosition());
     _rotator->setAnchorPoint(Vec2(-2, .5));
-    _scene->addChild(_rotator);
+    _scene->addChild(_rotator, 10);
 
 
     auto _rotateListener = EventListenerTouchOneByOne::create();
@@ -115,6 +112,8 @@ void Player::showHP(){
     char hp[0xf];
     sprintf(hp, "%d", _hitPoint);
     _hpLabel->setString(hp);
+	_hpLabel->setPosition(0, 50);
+	_hpLabel->setColor(Color3B(146, 0, 58));
 }
 
 void Player::onCollision(PhysicsContact &c, PhysicsBody *b){

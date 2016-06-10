@@ -16,11 +16,13 @@ public:
 	virtual bool init();
 
 	bool onContactBegin(PhysicsContact&);
+	void onPauseButtonCallback(Ref*);
 
 	CREATE_FUNC(PlayScene)
 	float _totalTime;
 	int _HP;
 	int _totalEnemy;
+	bool _isPause;
 	void tick(float dt);
 private:
 

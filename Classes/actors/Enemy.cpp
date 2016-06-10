@@ -2,6 +2,7 @@
 #include "Bullet.h"
 #include "Player.h"
 #include "GameManager.h"
+#include "PlayScene.h"
 #include <algorithm>
 
 using namespace std;
@@ -73,11 +74,7 @@ float min_float(float a, float b)
 
 Vec2 Enemy::positionOnTime(float time){
 	//Code here
-    /*if (_role == EMR_LINE){
-        return _startPos + (_player->getPosition() - _startPos) * .1 * time;
-    } else if (_role == EMR_PARABOL){
-        return Vec2(time * 50, time * time * 10);
-    }*/
+
 	float time_ = time;
 	float speed = .2;
 	float change = 5;
@@ -114,6 +111,7 @@ Vec2 Enemy::positionOnTime(float time){
 }
 
 void Enemy::tick(float dt){
+    if (((PlayScene*)getScene())->_isPause) return;
     _totalTime += dt;
     setPosition(positionOnTime(_totalTime));
 }

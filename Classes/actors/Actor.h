@@ -62,8 +62,9 @@ public:
     protected:
 
 
-        Scene *_scene;
+    Scene *_scene;
     EventListenerTouchOneByOne *_rotateListener;
+    
 
 };
 

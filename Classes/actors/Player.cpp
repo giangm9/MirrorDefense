@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Bullet.h"
+#include "PlayScene.h"
 #include "GameManager.h"
 #include <algorithm>
 
@@ -34,7 +35,7 @@ bool Player::init(){
 
 
 void Player::tick(float dt){
-
+        if (((PlayScene*)getScene())->_isPause) return;
     if (_isShooting){
         _reloadTime += dt;
         if (_reloadTime > 1){
@@ -43,7 +44,7 @@ void Player::tick(float dt){
             float x = -cos(CC_DEGREES_TO_RADIANS(getRotation()));
             float y = sin(CC_DEGREES_TO_RADIANS(getRotation()));
 			
-			for (int i = 0; i < 4; i++) {
+			for (int i = 0; i < 2; i++) {
 				auto bullet = Bullet::create(_scene, getPosition() + Vec2(x * 20 * i, y * 20 * i), Vec2(x, y) * power);
 				_scene->addChild(bullet);
 			}

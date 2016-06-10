@@ -39,9 +39,20 @@ bool PlayScene::init(){
         addChild(mirror);
     }
 
+    // Pause Button
+    auto pause = MenuItemImage::create("pause.png", "pause.png", CC_CALLBACK_1(PlayScene::onPauseButtonCallback, this));
+    
+    pause->setPosition(Vec2(50, visibleSize.height - 60));
+    auto menu = Menu::create(pause, NULL);
+    menu->setPosition(Vec2(0,0));
+    
+    _isPause = false;
+    addChild(menu, 100);
     _totalTime = 0;
 	_HP = 10;
 	_totalEnemy = 0;
+	
+	
     schedule(CC_SCHEDULE_SELECTOR(PlayScene::tick), 1.0f/60.0f);
     return true;
 }
@@ -62,7 +73,14 @@ bool PlayScene::onContactBegin(PhysicsContact &contact){
 }
 
 
+void PlayScene::onPauseButtonCallback(Ref* pSender){
+    _isPause = !_isPause;
+    log("%d", _isPause);
+}
+
+
 void PlayScene::tick(float dt){
+    if (_isPause) return;
 	//Code here
     Player* player = (Player*)getChildByTag(TAG_PLAYER);
     if (player->_hitPoint == 0){
@@ -71,7 +89,7 @@ void PlayScene::tick(float dt){
 	}
 
     _totalTime += dt;
-    if (_totalTime > 1 && _totalTime < 2) {
+    if (_totalTime > 2 && _totalTime < 3) {
 		Vec2 pos;
 		/*while (1)
 		{
@@ -79,14 +97,14 @@ void PlayScene::tick(float dt){
 			pos.y = rand() % 768;
 			if (getChildByTag(TAG_PLAYER)->getPosition().distance(pos) > 350) break;
 		}*/
-		if (_totalEnemy == 50)
+		if (_totalEnemy % 20 == 0)
 		{
 			_HP += 10;
-			_totalEnemy = 0;
+//			_totalEnemy = 0;
 		}
 		pos = getChildByTag(TAG_PLAYER)->getPosition();
 		pos.y += 350;
-		auto enemy = Enemy::create(this, pos , _HP);
+		auto enemy = Enemy::create(this, pos, (_totalEnemy/10 + 1) * 4);
         addChild(enemy);
 		++_totalEnemy;
         _totalTime = .0;
